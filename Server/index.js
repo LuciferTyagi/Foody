@@ -18,8 +18,12 @@ app.get("/api/res", async (req, res) => {
     const timestamp = Date.now();
     const limit = 20; // Number of results you want to fetch
     const offset = 0; // Offset for pagination, if you want to fetch the next set of results, you would increment this
+    
+    // Determine the platform based on the request
+    const isMobile = isMobileDevice(req.headers["user-agent"]);
+    const platform = isMobile ? 'MOBILE_WEB_LISTING' : 'DESKTOP_WEB_LISTING';
 
-    const url = `${SWIGGY_API_BASE_URL}?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING&timestamp=${timestamp}`;
+    const url = `${SWIGGY_API_BASE_URL}?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=${platform}&timestamp=${timestamp}`;
 
     // Proxy the request to Swiggy API
     const response = await fetch(url, {
