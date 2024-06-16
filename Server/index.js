@@ -10,7 +10,13 @@ app.use(cors());
 
 // Define your Swiggy API endpoint
 const SWIGGY_API_BASE_URL = "https://www.swiggy.com/dapi/restaurants/list/v5";
-const SWIGGY_API_MENU_URL ="https://www.swiggy.com/dapi"
+
+// Function to determine if the request is from a mobile device
+function isMobileDevice(userAgent) {
+  const mobileKeywords = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone'];
+  return mobileKeywords.some(keyword => userAgent.includes(keyword));
+}
+
 // Define your proxy route
 app.get("/api/res", async (req, res) => {
   try {
@@ -18,19 +24,20 @@ app.get("/api/res", async (req, res) => {
     const timestamp = Date.now();
     const limit = 20; // Number of results you want to fetch
     const offset = 0; // Offset for pagination, if you want to fetch the next set of results, you would increment this
-    
-    // Determine the platform based on the request
-    const isMobile = isMobileDevice(req.headers["user-agent"]);
+
+    // Determine the platform based on the user agent
+    const userAgent = req.headers["user-agent"];
+    const isMobile = isMobileDevice(userAgent);
     const platform = isMobile ? 'MOBILE_WEB_LISTING' : 'DESKTOP_WEB_LISTING';
 
-    const url = `${SWIGGY_API_BASE_URL}?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=${platform}&timestamp=${timestamp}`;
+    // Construct the URL with the appropriate platform
+    const url = `${SWIGGY_API_BASE_URL}?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=${platform}&timestamp=${timestamp}&limit=${limit}&offset=${offset}`;
 
     // Proxy the request to Swiggy API
     const response = await fetch(url, {
       headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-          "Accept": "application/json",
+        "User-Agent": userAgent,
+        "Accept": "application/json",
       },
     });
 
@@ -48,22 +55,18 @@ app.get("/api/menu", async (req, res) => {
   try {
     // Extract restaurantId from query parameters
     const { restaurantId } = req.query;
-    // console.log("Restaurant ID:", restaurantId);
 
     // Construct the URL to fetch menu data from Swiggy API
     const url = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7336001&lng=77.7602283&restaurantId=${restaurantId}`;
 
-
     // Proxy the request to Swiggy API
     const response = await fetch(url, {
       headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-          "Accept": "application/json",
+        "User-Agent": req.headers["user-agent"],
+        "Accept": "application/json",
       },
     });
     const data = await response.json();
-    
 
     // Send the menu data back to the client
     res.json(data);
