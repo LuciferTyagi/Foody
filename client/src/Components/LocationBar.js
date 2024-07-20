@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
-
+import { useSelector } from 'react-redux';
+import lang from '../utlis/languageConstant';
+import { motion } from 'framer-motion';
+import { fadeIn } from './Variants';
 
 
 function LocationSearch({ updateCoordinates }) {
   const [query, setQuery] = useState('');
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
-
+  const langkey  = useSelector(store => store.config.lang);
   const handleChange = async (event) => {
     const value = event.target.value;
     setQuery(value);
@@ -39,7 +42,11 @@ function LocationSearch({ updateCoordinates }) {
   };
 
   return (
-    <div className="search w-full relative min-w-150 rounded my-9 mx-0">
+    <motion.div 
+    initial="hidden"
+    animate="show"
+    variants={fadeIn('right', 0.2)}
+    className="search w-full relative min-w-150 rounded my-9 mx-0">
       <input
         type="text"
         value={query}
@@ -47,7 +54,7 @@ function LocationSearch({ updateCoordinates }) {
           query ? "shadow-md" : ""
         }`}
         onChange={handleChange}
-        placeholder="Enter your location"
+        placeholder={lang[langkey].locationPlaceholder}
       />
       <button className="search-btn text-sm transition duration-500 hover:bg-teal-800 absolute border-none right-0 w-16 h-full bg-white text-center cursor-pointer text-teal-300">
         <FontAwesomeIcon icon={faLocationCrosshairs} />
@@ -65,7 +72,7 @@ function LocationSearch({ updateCoordinates }) {
           <p>Longitude: {selectedLocation.longitude}</p>
         </div>
       )} */}
-    </div>
+    </motion.div>
   );
   
  

@@ -30,30 +30,13 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useSelector } from "react-redux";
+import lang from "../utlis/languageConstant";
 
 
 
 
-const data = [
-    {
-        image: cj,
-        name: "CJ",
-        rating: 4.5,
-        reviewText: "Foody is the best website."
-    },
-    {
-        image: vishal,
-        name: "vishal",
-        rating: 3,
-        reviewText: "Foody is the best website but i dont have money."
-    },
-    {
-        image: pratham,
-        name: "Pratham",
-        rating: 4,
-        reviewText: "I know Foody is the best website"
-    },
-];
+
 
 const faq = [
     {
@@ -99,6 +82,27 @@ const slider = [
 ]
 
 const About = () => {
+    const langkey = useSelector(store =>store.config.lang);
+    const data = [
+        {
+            image: cj,
+            name: lang[langkey].aboutReviewName1,
+            rating: 4.5,
+            reviewText: "Foody is the best website."
+        },
+        {
+            image: vishal,
+            name: "vishal",
+            rating: 3,
+            reviewText: "Foody is the best website but i dont have money."
+        },
+        {
+            image: pratham,
+            name: "Pratham",
+            rating: 4,
+            reviewText: "I know Foody is the best website"
+        },
+    ];
     const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
     const [selected, setSelected] = useState(null);
     const [rotation, setRotation] = useState(0);

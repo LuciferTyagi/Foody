@@ -8,9 +8,8 @@ import ResSection from "./ResSection.js";
 import About from "./About.js";
 import SearchBar from "./SearchBar.js";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilterCriteria, setFilterRestaurants, setRestaurants } from "../utlis/restaurantsSlice.js";
-import Filter from "./Filter.js";
+import { useDispatch } from "react-redux";
+import { setRestaurants } from "../utlis/restaurantsSlice.js";
 
 
 
@@ -19,12 +18,11 @@ const Body = () => {
   const restaurantListRef = useRef(null);
   const RestaurantCardPromoted = withPromotedLabel(ResCard);
 
-  const listOfRes = useSelector((state) => state.restaurants.restaurants);
-  const filteredRes = useSelector((state) => state.restaurants.filteredRestaurants);
+  const [listOfRes, setListOfRes] = useState([]);
+  const [filteredRes, setFilteredRes] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [latitude, setLatitude] = useState(28.7336001);
   const [longitude, setLongitude] = useState(77.7602283);
-  
 
   useEffect(() => {
     fetchData();
@@ -35,35 +33,32 @@ const Body = () => {
     setLatitude(lat);
     setLongitude(lon);
   };
-  
   const fetchData = async () => {
     console.log("Fetching data with coordinates:", latitude, longitude);
     const LIST_API = getListAPI(latitude, longitude);
     const data = await fetch(LIST_API);
     const json = await data.json();
-    
+    // dispatch(setRestaurants(data));
 
     const restaurants =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     console.log("Fetched Restaurants:", restaurants);
     console.log(restaurants);
-    dispatch(setRestaurants(restaurants));
+    setListOfRes(restaurants);
+    setFilteredRes(restaurants);
   };
   
   const handleSearch = (text) => {
     const filterRes = listOfRes.filter((resData) =>
       resData.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
-    dispatch(setFilterRestaurants(filterRes));
+    setFilteredRes(filterRes);
   };
   const scrollToRestaurantList = () => {
     if (restaurantListRef.current) {
       restaurantListRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  };
-  const handleFilterChange = (criteria) => {
-    dispatch(setFilterCriteria(criteria));
   };
 
 
@@ -84,7 +79,6 @@ const Body = () => {
      <Hero updateCoordinates={updateCoordinates} />
       
       <ResSection></ResSection>
-      
       <div ref={restaurantListRef} className="res-list grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         {filteredRes?.map((restaurant, index) => (
           <Link
@@ -105,4 +99,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+

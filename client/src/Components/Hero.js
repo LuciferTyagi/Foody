@@ -1,6 +1,5 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
 import herobiryani from '../../asset/hero-biryani.png';
 import heroburger from '../../asset/hero-burger.png';
 import heropizza from '../../asset/hero-pizza.png';
@@ -9,28 +8,40 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import pratham from "../../asset/pratham.jpg";
 import {motion} from "framer-motion";
 import LocationSearch from './LocationBar';
-
+import lang from '../utlis/languageConstant';
+import { useSelector } from 'react-redux';
+import { fadeIn } from './Variants';
 
 const Hero = ({ updateCoordinates }) => {
     const[rotate , setRotate] = React.useState(false);
+   const langkey = useSelector(store => store.config.lang);
+   
+    
     return (
         <main className="hero-section min-h-screen py-0 px-48 flex justify-between items-center bg-slate-200 ">           
          <div className="hero-content w-2/5 ">
-            <h1 animate={{x:100 ,scale:1}} initial={{scale:0}} class="hero-heading text-5xl font-bold text-teal-800 leading-[5rem]">Eat the best</h1>
-
-            <p className="hero-line leading-8 opacity-75 mt-8">Explore and understand the culture more by taste..</p>
-
-            {/* <div className="search w-full relative  min-w-150 h-12 rounded overflow-hidden my-9 mx-0">
-                <input type="text" className="search-box w-full h-full bg-white border-none py-4 px-6 outline-none text-sm" placeholder=" Enter your location.." />
-                <button className="search-btn text-sm  transition duration-500 hover:bg-teal-800 absolute border-none right-0 w-16 h-full bg-white text-center cursor-pointer text-teal-300">
-                    <FontAwesomeIcon icon={faLocationCrosshairs} />
-                </button>
-            </div> */}
+         <motion.h1
+            className="hero-heading text-5xl font-bold text-teal-800 leading-[5rem]"
+            initial="hidden"
+            animate="show"
+            variants={fadeIn('down', 0.2)} // Apply fadeIn animation with direction 'up' and delay 0.2s
+        >
+            {lang[langkey].heroHeading}
+        </motion.h1>
+            <motion.p
+                    className="hero-line leading-8 opacity-75 mt-8"
+                    initial="hidden"
+                    animate="show"
+                    variants={fadeIn('up', 0.5)}
+                >
+                    {lang[langkey].heroLineHeading}
+                </motion.p>
+           
            <LocationSearch updateCoordinates={updateCoordinates} />
             <div className='hero-action-btn-container flex items-center gap-8'>
-                <button className='btn py-4 px-6 border-none rounded-md text-lg text-white bg-teal-800 capitalize cursor-pointer'>Order Food</button>
-                <p className='or text-teal-800'>or</p>
-                <button className='btn-transparent bg-transparent border-2 border-solid border-teal-800 py-4 px-6 rounded-md text-lg text-teal-800 capitalize cursor-pointer'>Make Reservation</button>
+                <button className='btn py-4 px-6 border-none rounded-md text-lg text-white bg-teal-800 capitalize cursor-pointer'>{lang[langkey].heroButton1}</button>
+                <p className='or text-teal-800'>{lang[langkey].heroPara}</p>
+                <button className='btn-transparent bg-transparent border-2 border-solid border-teal-800 py-4 px-6 rounded-md text-lg text-teal-800 capitalize cursor-pointer'>{lang[langkey].heroButton2}</button>
             </div>
         </div>
 
@@ -57,14 +68,14 @@ const Hero = ({ updateCoordinates }) => {
                                     <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
                                     <p>4</p>
                                 </div>
-                                <h2 className="reviewer-name font-[400]">Pratham</h2>
+                                <h2 className="reviewer-name font-[400]">{lang[langkey].prathamReviewName}</h2>
                             </div>
                         </div>
                         <div className="review-body flex gap-[1rem] mt-[.5rem] py-[1rem] px-0">
                             <FontAwesomeIcon className="text-[1.4rem] text-teal-800" icon={faQuoteLeft} />
-                            <p className="review leading-[1.75rem]">Foody is the best website..</p>
+                            <p className="review leading-[1.75rem]">{lang[langkey].prathamReview}</p>
                         </div>
-                        {/* </div> */}
+                     
                     </div>
 
                 </div>

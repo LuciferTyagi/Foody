@@ -8,9 +8,13 @@ import food6 from "../../asset/food-6.png"
 import food7 from "../../asset/food-7.png"
 // import Leaf from "./Leaf";
 import leafs from "../../asset/leafs.png"
+import { useSelector } from "react-redux";
+import lang from "../utlis/languageConstant";
+import Filter from "./Filter";
+
 
 const ResSection = () => {
-
+const langkey = useSelector(store => store.config.lang);
     return (
         <section className="relative py-[6rem] px-[10vw] bg-white ">
 
@@ -44,12 +48,14 @@ const ResSection = () => {
                     </div>
                 </div>
                 <div className="section-detail w-[45%] min-w-[300px] ml-auto">
-                    <span className="section-highlight py-[.5rem] px-[1rem] rounded-md bg-teal-500 bg-opacity-20 text-teal-800">Best Rated Restaurants</span>
+                    <span className="section-highlight py-[.5rem] px-[1rem] rounded-md bg-teal-500 bg-opacity-20 text-teal-800">{lang[langkey].resSectionSpan}</span>
                     <p className="section-title my-[2rem] mx-[0] text-[4rem]">1000+</p>
-                    <p className="section-info leading-[2rem] mb-[2rem]">Order from our 1000+ food and beverages menu. Food for every taste and mood</p>
-                    <button className='btn py-4 px-6 border-none rounded-md text-lg text-white bg-teal-800 capitalize cursor-pointer'>Order Food</button>
+                    <p className="section-info leading-[2rem] mb-[2rem]">{lang[langkey].resSectionInfo}</p>
+                    <button className='btn py-4 m-2 px-6 border-none rounded-md text-lg text-white bg-teal-800 capitalize cursor-pointer'>{lang[langkey].resSectionButton1}</button>
+                    <Filter/>
                 </div>
-
+                
+               
                 <div className="leaf-layer-right absolute bottom-[-5%] right-0 w-[10rem] h-[12rem] overflow-hidden z-[2] ">
     <img className="absolute z-[2] w-full h-full object-cover left-[45%]  transform scale-[0.8] rotate-[30]" src={leafs} alt="Leaf"></img>
 </div>

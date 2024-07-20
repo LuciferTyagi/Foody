@@ -9,7 +9,7 @@ import ResMenu from "./Components/ResMenu.js"
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import UserContext from "./utlis/UserContext.js";
 import { useState, useEffect } from "react";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import appStore from "./utlis/appStore.js";
 import Cart from "./Components/Cart.js";
 import ResCard, { withPromotedLabel } from "./Components/ResCard.js";
@@ -18,6 +18,8 @@ import ResSection from "./Components/ResSection.js";
 import { LIST_API } from "./utlis/constant.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import lang from "./utlis/languageConstant.js";
+import Cursor from "./Components/Cursor.js";
 
 // import Grocery from "./Components/Grocery.js";
 
@@ -33,6 +35,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Grocery = lazy(() => import("./Components/Grocery.js"));
 
 const AppLayout = () => {
+const langkey  = useSelector(store => store.config.lang);
 
 
 
@@ -40,15 +43,17 @@ const AppLayout = () => {
     //authentication
     useEffect(() => {
         const data = {
-            name: "Yagyansh Tyagi",
+            name: lang[langkey].name,
         };
         setUserName(data.name);
-    }, []);
+    }, [langkey]);
     return (
         <Provider store={appStore}>
+            
           <ToastContainer />
             <UserContext.Provider value={{ loggedInUser: userName }}>
                 <div className="app">
+                    <Cursor/>
                     <Header />
                     <Outlet />
 
@@ -96,4 +101,8 @@ const appRouter = createBrowserRouter([
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+    <Provider store={appStore}>
+        <RouterProvider router={appRouter} />
+    </Provider>
+);
