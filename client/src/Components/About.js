@@ -137,7 +137,7 @@ const About = () => {
     return (
         <>
             <section className="about-section pb-0 mt-[4rem] relative ">
-                <div className="before-content absolute top-0 left-0 w-full h-[90%] bg-slate-200 z-[-1]"></div>
+                <div className="before-content absolute top-0 left-0 w-full h-[90%] bg-slate-200   z-[-1]"></div>
 
                 <div className="about-us-review-container absolute left-[-10%] w-[40rem] h-[40rem]">
 
@@ -152,7 +152,7 @@ const About = () => {
                             <div className={`review-wrapper absolute flex gap-[1rem] z-[2] ${index === 0 ? 'bottom-[74%] left-[38%]' : index === 1 ? 'bottom-[44%] left-[62%]' : 'bottom-[2%] left-[55%]'} ${index === currentReviewIndex ? "opacity-100 scale-100 transition-opacity ease-in duration-500" : "opacity-0 scale-50"}`}>
                                 <img className="reviewer-img w-[3rem] h-[3rem] rounded-[100%] z-[2]" src={review.image}></img>
 
-                                <div className="review-box relative  inset-0 py-[1rem] px-[1.5rem] w-[30rem]  rounded-[.5rem] bg-white z-[2]   shadow-md shadow-gray-200 origin-top-left ">
+                                <div className="review-box relative  inset-0 py-[1rem] px-[1.5rem] w-[30rem]  rounded-[.5rem] bg-white z-[2] dark:bg-slate-600   shadow-md shadow-gray-200 origin-top-left ">
                                     <div className="reviewer-info flex gap-[1rem] ">
                                         <div className="reviewer">
                                             <div className="reviewer-rating flex gap-[.1rem] text-[.7rem]">
@@ -180,29 +180,29 @@ const About = () => {
 
 
                 <div className="about w-[25%] ml-auto min-w-[250px] mr-[5rem]"> {/* Add some right margin */}
-                    <h2 className="about-title text-[2rem] font-bold capitalize text-teal-800">Why US?</h2>
-                    <p className="about-info mt-[2rem] mx-0 mb-[2rem] leading-[2rem]">
+                    <h2 className="about-title text-[2rem] font-bold capitalize text-teal-800 dark:text-teal-200">Why US?</h2>
+                    <p className="about-info mt-[2rem] mx-0 mb-[2rem] leading-[2rem] dark:text-white">
                         Discover Foody Your premier destination for culinary delights, offering unbeatable prices and swift delivery from a diverse selection of 11+ restaurants.</p>
                     <div className="services-container">
-                        <div className="service bg-white rounded-[.5rem] mb-[2rem] p-[1.5rem] shadow-lg shadow-gray-200">
+                        <div className="service bg-white dark:bg-slate-600 rounded-[.5rem] mb-[2rem] p-[1.5rem] shadow-lg shadow-gray-200">
                             <div className="service-title flex gap-[1rem] items-center">
                                 <img className="service-img w-[3rem] h-[3rem] rounded-[.2rem]" src={delivery} alt="fastest delivery"></img>
                                 <h3 className="service-name font-medium">Fastest Delivery</h3>
-                                <p className="service-detail mt-[1rem] leading-[2rem] opacity-75">Foody is one of the fastest delivery website which can deliver in 30 min</p>
+                                <p className="service-detail mt-[1rem] leading-[2rem] opacity-75 dark:text-white">Foody is one of the fastest delivery website which can deliver in 30 min</p>
                             </div>
                         </div>
-                        <div className="service bg-white rounded-[.5rem] mb-[2rem] p-[1.5rem] shadow-lg shadow-gray-200">
+                        <div className="service bg-white dark:bg-slate-600 rounded-[.5rem] mb-[2rem] p-[1.5rem] shadow-lg shadow-gray-200">
                             <div className="service-title flex gap-[1rem] items-center">
                                 <img className="service-img w-[3rem] h-[3rem] rounded-[.2rem]" src={bestPrice} alt="best prices"></img>
                                 <h3 className="service-name font-medium">Best Prices</h3>
-                                <p className="service-detail mt-[1rem] leading-[2rem] opacity-75">Foody savoring Delights, Offering the Best Price on Every Bite.</p>
+                                <p className="service-detail mt-[1rem] leading-[2rem] opacity-75 dark:text-white">Foody savoring Delights, Offering the Best Price on Every Bite.</p>
                             </div>
                         </div>
-                        <div className="service bg-white rounded-[.5rem] mb-[2rem] p-[1.5rem] shadow-lg shadow-gray-200">
+                        <div className="service bg-white dark:bg-slate-600 rounded-[.5rem] mb-[2rem] p-[1.5rem] shadow-lg shadow-gray-200">
                             <div className="service-title flex gap-[1rem] items-center flex-col md:flex-row">
                                 <img className="service-img w-[3rem] h-[3rem] rounded-[.2rem]" src={res} alt="restaurants"></img>
                                 <h3 className="service-name font-medium">11+ Restaurants</h3>
-                                <p className="service-detail mt-[1rem] leading-[2rem] opacity-75">Foody is Your Gateway to 11+ Restaurants, Always Offering the Best Price!</p>
+                                <p className="service-detail mt-[1rem] leading-[2rem] opacity-75 dark:text-white">Foody is Your Gateway to 11+ Restaurants, Always Offering the Best Price!</p>
                             </div>
                         </div>
                     </div>
@@ -211,12 +211,12 @@ const About = () => {
             </section>
 
             <section className="faq-section min-h-[100vh] w-full overflow-x-hidden">
-                <h1 className="section-title text-[3rem] mb-[8rem] text-center font-[400]">Frequently Ask Questions</h1>
+                <h1 className="section-title text-[3rem] mb-[8rem] text-center font-[400] dark:text-white">Frequently Ask Questions</h1>
 
                 {faq.map((item, index) => (
                     <div key={index} className="faq m-auto w-[70%] rounded-[.5rem] border-[.1rem] border-solid border-slate-200 mb-[2rem] relative shadow-md shadow-slate-200">
                         <div className="question-box flex gap-[1rem] justify-between items-center p-[2rem] cursor-pointer" onClick={() => toggle(index)}>
-                            <h3 className="question font-[400]">{item.question}</h3>
+                            <h3 className="question font-[400] dark:text-white">{item.question}</h3>
                             <FontAwesomeIcon
                                 className={`font-[1.5rem] text-center transition duration-200 text-teal-800 cursor-pointer ${selected === index ? 'transform rotate-45' : ''}`}
                                 icon={faPlus}
@@ -226,7 +226,7 @@ const About = () => {
                             className={`answer-box transition-all duration-500 ease-in-out ${selected === index ? 'block h-auto py-[2rem] px-[2rem]' : 'h-0 overflow-hidden'
                                 }`}
                         >
-                            <p className="answer leading-[2rem]">
+                            <p className="answer leading-[2rem] dark:text-white">
                                 {item.answer}
                             </p>
                         </div>
@@ -241,7 +241,7 @@ const About = () => {
 
 
             <div className="discount-banner relative flex mt-[0] mx-[10vw] mb-[5rem] p-[4rem] rounded-[.5rem] bg-[url('./asset/discount.png')] bg-cover text-white overflow-hidden ">
-                <div className="absolute inset-0 bg-gradient-to-r from-teal-800 to-teal-800 opacity-80"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-800 to-teal-400 opacity-80"></div>
                 <div className="section-detail w-[50%] min-w-[300px] ml-0 z-[2]">
                     <h1 className="section-title my-[2rem] mt-[0] mx-[0] text-[3rem] font-[400]">Get an extra 20% off on your first order.</h1>
                     <p className="section-info leading-[2rem] mb-[2rem] font-[700]">Use this code during checkout</p>
@@ -256,7 +256,7 @@ const About = () => {
             </div>
 
 
-            <section className="footer relative pt-[4rem] px-[10vw] pb-[8rem] flex gap-[5%] bg-slate-200 ">
+            <section className="footer relative pt-[4rem] px-[10vw] pb-[8rem] flex gap-[5%] bg-slate-200 dark:bg-slate-800">
                 <div className="company-info h-[3rem] mb-[2rem] ">
                     <img className="logo h-20" src={reslogo}></img>
                     <div className="social-links flex gap-[1rem]">
@@ -269,24 +269,24 @@ const About = () => {
                 </div>
                 
                 <div className=" usefull-footer-links-container ml-auto">
-                    <h5 className="footer-link-title capitalize mb-[1rem] text-[#007676]">Usefull Links</h5>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize  hover:text-[#007676] hover:opacity-[1]" href="#">Menu</a>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">Restaurants</a>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">Your Orders</a>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">Support</a>
+                    <h5 className="footer-link-title capitalize mb-[1rem] text-[#007676] dark:text-teal-200">Usefull Links</h5>
+                    <a className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize  hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]" href="#">Menu</a>
+                    <a className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]" href="#">Restaurants</a>
+                    <a className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]" href="#">Your Orders</a>
+                    <a className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]" href="#">Support</a>
                 </div>
 
                 <div className=" information-footer-links-container ml-auto">
-                    <h5 className="footer-link-title capitalize mb-[1rem] text-[#007676]">Information</h5>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">About us</a>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">Privacy Policy</a>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">Terms & Condition</a>
-                    <a className="footer-links text-black no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">What info we collect?</a>
+                    <h5 className="footer-link-title capitalize mb-[1rem] text-[#007676] dark:text-teal-200">Information</h5>
+                    <a className="footer-links text-blackdark:text-white dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]" href="#">About us</a>
+                    <a className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]" href="#">Privacy Policy</a>
+                    <a className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]" href="#">Terms & Condition</a>
+                    <a className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[0.5rem] opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]" href="#">What info we collect?</a>
                 </div>
                 <div className=" contact-footer-links-container  ml-auto w-[20%]">
-                    <h5 className="footer-link-title capitalize mb-[1rem] text-[#007676]">Contact Us</h5>
-                    <p className="footer-links text-black no-underline leading-[1.5rem]  opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1] mb-[1rem]"> Phone - +91XXXXXXXX</p>
-                    <p className="footer-links text-black no-underline leading-[1.5rem] mb-[1rem] opacity-90 block capitalize hover:text-[#007676] hover:opacity-[1]">Email-foody@support</p>
+                    <h5 className="footer-link-title capitalize mb-[1rem] text-[#007676] dark:text-teal-200">Contact Us</h5>
+                    <p className="footer-links text-black dark:text-white no-underline leading-[1.5rem]  opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1] mb-[1rem]"> Phone - +91XXXXXXXX</p>
+                    <p className="footer-links text-black dark:text-white no-underline leading-[1.5rem] mb-[1rem] opacity-90 block capitalize hover:text-[#007676] dark:hover:text-teal-600 hover:opacity-[1]">Email-foody@support</p>
 
                 </div>
                 <div className="payment-partner absolute flex gap-[1rem] right-[10%] bottom-[20%]">
@@ -294,7 +294,7 @@ const About = () => {
                         <img key={index} className="h-[2rem]" src={pay.image}></img>
                     ))}
                 </div>
-                <p className="payment-partner-text absolute bottom-[12%] right-[10vw] font-[.8rem] opacity-70">
+                <p className="payment-partner-text absolute bottom-[12%] right-[10vw] font-[.8rem] opacity-70 dark:text-white">
                     Fully secured payment gateway by trusted companies.
                 </p>
                 <p className="copyright absolute w-[100%] left-0 bottom-0 text-center p-[.5rem] text-white bg-teal-800">

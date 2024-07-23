@@ -10,7 +10,7 @@ import SearchBar from "./SearchBar.js";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterCriteria, setFilterRestaurants, setRestaurants } from "../utlis/restaurantsSlice.js";
-import Filter from "./Filter.js";
+
 
 
 
@@ -70,7 +70,7 @@ const Body = () => {
   return listOfRes?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body bg-white-200  overflow-x-hidden  ">
+    <div className="body bg-white-200 dark:bg-slate-800  overflow-x-hidden  ">
      
       <SearchBar
         listOfRes={listOfRes}

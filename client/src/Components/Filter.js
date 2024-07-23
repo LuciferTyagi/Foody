@@ -18,12 +18,12 @@ const Filter = () => {
     <div className="m-2">
       <button
         onClick={() => setShowDropdown(!showDropdown)}
-        className="btn py-4 px-[3.1rem] border-none rounded-md text-lg text-white bg-teal-800 capitalize cursor-pointer"
+        className="btn py-4 px-[3.1rem] border-none rounded-md text-lg text-white dark:text-black bg-teal-800 dark:bg-teal-200 capitalize cursor-pointer"
       >
         Filter
       </button>
       {showDropdown && (
-        <div className="absolute mt-2 bg-white shadow-lg rounded-lg p-4 w-64 z-10">
+        <div className="absolute mt-2 bg-white dark:bg-slate-500 shadow-lg rounded-lg p-4 w-64 z-10">
           <div className="flex flex-col mb-4">
             <label htmlFor="cuisine" className="text-sm font-medium text-gray-700">Cuisine</label>
             <select 
@@ -57,7 +57,7 @@ const Filter = () => {
             </select>
           </div>
           <button 
-            className="w-full py-2 px-4 bg-teal-800 text-white rounded-md shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            className="w-full py-2 px-4 bg-teal-800 dark:bg-teal-200 text-white dark:text-black rounded-md shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             onClick={handleFilterChange}
           >
             Apply Filters

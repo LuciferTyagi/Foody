@@ -21,14 +21,14 @@ const ResMenu = () =>{
         const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
             (c) => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
 
-        // console.log(categories); 
+     
 
         
        
         return (
-    <div className="text-center">
+    <div className="text-center bg-slate-300 dark:bg-slate-800">
         <h1 className="font-bold my-6 text-2xl">{name}</h1>
-        <p className="font-bold text-lg">{cuisines.join(",")} . {costForTwoMessage}</p>
+        <p className="font-bold text-lg dark:text-white">{cuisines.join(",")} . {costForTwoMessage}</p>
         
     {/* Accordions */} 
       {categories.map((category ,index) => {

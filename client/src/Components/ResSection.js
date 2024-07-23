@@ -16,7 +16,7 @@ import Filter from "./Filter";
 const ResSection = () => {
 const langkey = useSelector(store => store.config.lang);
     return (
-        <section className="relative py-[6rem] px-[10vw] bg-white ">
+        <section className="relative py-[6rem] px-[10vw] bg-white dark:bg-slate-800 ">
 
             <div className="section w-full py-[2rem] px-0 pb-[5rem] flex justify-between items-center ">
                 <div className="food-img-container min-w-[30rem] min-h-[30rem] relative scale-[0.8]">
@@ -48,10 +48,10 @@ const langkey = useSelector(store => store.config.lang);
                     </div>
                 </div>
                 <div className="section-detail w-[45%] min-w-[300px] ml-auto">
-                    <span className="section-highlight py-[.5rem] px-[1rem] rounded-md bg-teal-500 bg-opacity-20 text-teal-800">{lang[langkey].resSectionSpan}</span>
-                    <p className="section-title my-[2rem] mx-[0] text-[4rem]">1000+</p>
-                    <p className="section-info leading-[2rem] mb-[2rem]">{lang[langkey].resSectionInfo}</p>
-                    <button className='btn py-4 m-2 px-6 border-none rounded-md text-lg text-white bg-teal-800 capitalize cursor-pointer'>{lang[langkey].resSectionButton1}</button>
+                    <span className="section-highlight py-[.5rem] px-[1rem] rounded-md bg-teal-500 bg-opacity-20 dark:bg-teal-200 text-teal-800 dark:text-black">{lang[langkey].resSectionSpan}</span>
+                    <p className="section-title my-[2rem] mx-[0] text-[4rem] dark:text-white">1000+</p>
+                    <p className="section-info leading-[2rem] mb-[2rem] dark:text-white">{lang[langkey].resSectionInfo}</p>
+                    <button className='btn py-4 m-2 px-6 border-none rounded-md text-lg text-white dark:text-black bg-teal-800 dark:bg-teal-200 capitalize cursor-pointer'>{lang[langkey].resSectionButton1}</button>
                     <Filter/>
                 </div>
                 

@@ -12,6 +12,7 @@ import {
 import { SUPPORTED_LANGUAGES } from "../utlis/constant";
 import { changeLanguage } from "../utlis/configSlice";
 import lang from "../utlis/languageConstant";
+import ThemeToggle from "./ThemeToggle"
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,9 +35,9 @@ const Header = () => {
 
   return (
     <div className="header-container  ">
-      <div className="navigation-bar fixed top-0 left-0 w-full bg-slate-200 z-50">
+      <div className="navigation-bar fixed top-0 left-0 w-full bg-slate-200 dark:bg-slate-800 z-50">
         <div className="flex justify-aroundound items-center h-16">
-          <img className="logo h-20" src={RESLOGO} alt="Logo" />
+          <img className="logo h-20 " src={RESLOGO} alt="Logo" />
           <button className="lg:hidden text-2xl" onClick={toggleMobileMenu}>
             <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
           </button>
@@ -58,15 +59,15 @@ const Header = () => {
               <Link
                 key={link.id}
                 to={link.path}
-                className="text-black no-underline capitalize py-2 px-4 transition duration-200 hover:text-teal-800"
+                className="text-black dark:text-white no-underline capitalize py-2 px-4 transition duration-200 hover:text-teal-800 dark:hover:text-teal-200"
               >
                 {link.name}
               </Link>
             ))}
-
-            <li className="text-black no-underline capitalize py-2 px-4 transition duration-200 hover:text-teal-800">
+            <li className="text-black dark:text-white no-underline capitalize py-2 px-4 transition duration-200 hover:text-teal-800 dark:hover:text-teal-200">
               {loggedInUser}
             </li>
+            <li><ThemeToggle/></li>
           </ul>
 
           <div className="nav-extras flex items-center gap-4">

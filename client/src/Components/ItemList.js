@@ -25,8 +25,8 @@ const ItemList = ({ items, isInCartPage, totalCartQuantity }) => {
           className="p-2 m-2  border-black border-b-2 text-left flex justify-between"
         >
           <div className="w-9/12">
-            <div className="py-2">
-              <span>{item.card.info.name}</span>
+            <div className="py-2 dark:text-white">
+              <span className="dark:text-white">{item.card.info.name}</span>
               <span>
                 {" "}
                 - ₹{" "}
@@ -35,7 +35,7 @@ const ItemList = ({ items, isInCartPage, totalCartQuantity }) => {
                   : item.card.info.defaultPrice / 100}
               </span>
             </div>
-            <p className="text-xs">{item.card.info.description}</p>
+            <p className="text-xs dark:text-white">{item.card.info.description}</p>
           </div>
 
           <div className="w-3/12 p-4">

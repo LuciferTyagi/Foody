@@ -19,7 +19,7 @@ const ResCard = ({ resData }) => {
     
     
     <div
-      className=" restauransts-container  mt-[5rem] m-4 p-4 bg-white rounded-lg shadow-md w-[300px] h-[400px] flex flex-col justify-between flex-shrink-0 transform transition-transform duration-300 hover:scale-105 "
+      className=" restauransts-container  mt-[5rem] m-4 p-4 bg-white dark:bg-slate-600 rounded-lg shadow-md w-[300px] h-[400px] flex flex-col justify-between flex-shrink-0 transform transition-transform duration-300 hover:scale-105 "
       onMouseEnter={() => setIsHovered(true)} // Set isHovered to true on mouse enter
       onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on mouse leave
       style={{ position: 'relative' }} // Add position relative to the card
@@ -28,7 +28,7 @@ const ResCard = ({ resData }) => {
       {/* Outline animation */}
       {isHovered && (
         <div
-          className="absolute top-0 left-0 right-0 bottom-0 border border-teal-800 rounded-lg pointer-events-none"
+          className="absolute top-0 left-0 right-0 bottom-0 border border-teal-800 dark:border-teal-200 rounded-lg pointer-events-none"
           style={{ animation: 'pulse 1s infinite alternate' }} // Apply pulse animation
         />
       )}
@@ -53,7 +53,7 @@ const ResCard = ({ resData }) => {
         )}
 
       </div>
-      <button className="order bg-teal-600 hover:bg-teal-800 text-white font-semibold px-4 py-2 rounded-md transition-colors duration-300">
+      <button className="order bg-teal-600 dark:bg-teal-200 hover:bg-teal-800 dark:hover:bg-teal-400 text-white dark:text-black font-semibold px-4 py-2 rounded-md transition-colors duration-300">
         Buy
       </button>
       

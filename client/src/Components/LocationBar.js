@@ -50,13 +50,13 @@ function LocationSearch({ updateCoordinates }) {
       <input
         type="text"
         value={query}
-        className={`search-box w-full h-full bg-white border-none py-4 px-6 outline-none text-sm ${
+        className={`search-box w-full h-full rounded-lg bg-white  border-none py-4 px-6 outline-none text-sm ${
           query ? "shadow-md" : ""
         }`}
         onChange={handleChange}
         placeholder={lang[langkey].locationPlaceholder}
       />
-      <button className="search-btn text-sm transition duration-500 hover:bg-teal-800 absolute border-none right-0 w-16 h-full bg-white text-center cursor-pointer text-teal-300">
+      <button className="search-btn text-sm  rounded-lg transition duration-500 hover:bg-teal-800 absolute border-none right-0 w-16 h-full bg-white text-center cursor-pointer text-teal-300">
         <FontAwesomeIcon icon={faLocationCrosshairs} />
       </button>
       <ul className={`absolute top-full left-0 w-full ${query ? "bg-white border border-gray-300 rounded-b-lg" : ""}`}>
