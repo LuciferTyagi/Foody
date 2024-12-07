@@ -65,7 +65,7 @@ app.get("/api/menu", async (req, res) => {
     // Determine the platform based on the user agent
     const userAgent = req.headers["user-agent"];
     const isMobile = isMobileDevice(userAgent);
-    
+    const platform = isMobile ? "mobile" : "desktop";
     let url;
     
     if (isMobile) {
@@ -87,7 +87,7 @@ app.get("/api/menu", async (req, res) => {
     const data = await response.json();
 
     // Send the menu data back to the client
-    res.json(data);
+    res.json({data,platform});
   } catch (error) {
     console.error("Error proxying request to Swiggy API:", error);
     res.status(500).json({ error: "Internal server error" });
