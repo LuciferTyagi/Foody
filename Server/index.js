@@ -60,18 +60,30 @@ app.get("/api/res", async (req, res) => {
 app.get("/api/menu", async (req, res) => {
   try {
     // Extract restaurantId from query parameters
-    const { restaurantId } = req.query;
+    const { restaurantId} = req.query;
 
-    // Construct the URL to fetch menu data from Swiggy API
-    const url = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7336001&lng=77.7602283&restaurantId=${restaurantId}`;
+    // Determine the platform based on the user agent
+    const userAgent = req.headers["user-agent"];
+    const isMobile = isMobileDevice(userAgent);
+    
+    let url;
+    
+    if (isMobile) {
+      // Mobile-specific API call
+      url = `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7336001&lng=77.7602283&restaurantId=${restaurantId}`;
+    } else {
+      // Desktop-specific API call
+      url = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7336001&lng=77.7602283&restaurantId=${restaurantId}`;
+    }
 
     // Proxy the request to Swiggy API
     const response = await fetch(url, {
       headers: {
-        "User-Agent": req.headers["user-agent"],
+        "User-Agent": userAgent,
         "Accept": "application/json",
       },
     });
+
     const data = await response.json();
 
     // Send the menu data back to the client
