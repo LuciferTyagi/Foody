@@ -3,13 +3,13 @@ import fetch from "node-fetch";
 import cors from "cors";
 
 const app = express();
-const PORT = process.env.PORT || 3001; // Choose a port for your proxy server
+const PORT = process.env.PORT || 3001; 
 
-// Enable CORS
+
 app.use(cors());
 
-// Define your Swiggy API endpoint
-const SWIGGY_API_BASE_URL = "https://www.swiggy.com/dapi/restaurants/list/v5";
+const SWIGGY_API_BASE_URL_MOBILE = "https://www.swiggy.com/mapi/restaurants/list/v5";
+const SWIGGY_API_BASE_URL_DESKTOP = "https://www.swiggy.com/dapi/restaurants/list/v5";
 
 // Function to determine if the request is from a mobile device
 function isMobileDevice(userAgent) {
@@ -28,10 +28,16 @@ app.get("/api/res", async (req, res) => {
     // Determine the platform based on the user agent
     const userAgent = req.headers["user-agent"];
     const isMobile = isMobileDevice(userAgent);
-    const platform = isMobile ? 'MOBILE_WEB_LISTING' : 'DESKTOP_WEB_LISTING';
-
-    // Construct the URL with the appropriate platform
-    const url = `${SWIGGY_API_BASE_URL}?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=${platform}&timestamp=${timestamp}&limit=${limit}&offset=${offset}`;
+    
+    let url;
+    
+    if (isMobile) {
+      // Mobile-specific API call
+      url = `${SWIGGY_API_BASE_URL_MOBILE}?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&carousel=true&third_party_vendor=1&offset=${offset}&limit=${limit}`;
+    } else {
+      // Desktop-specific API call
+      url = `${SWIGGY_API_BASE_URL_DESKTOP}?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING&timestamp=${timestamp}&limit=${limit}&offset=${offset}`;
+    }
 
     // Proxy the request to Swiggy API
     const response = await fetch(url, {
